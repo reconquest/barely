@@ -7,7 +7,7 @@ for the shell-based tools, written in Go-lang.
 
 # Example
 
-```
+```go
 package main
 
 import (
