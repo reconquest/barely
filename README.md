@@ -1,4 +1,4 @@
-# barely ![report](https://goreportcard.com/badge/github.com/reconquest/barely)
+# barely [![report](https://goreportcard.com/badge/github.com/reconquest/barely)](https://goreportcard.com/report/reconquest/barely)
 
 Dead simple but yet extensible status bar for displaying interactive progress
 for the shell-based tools, written in Go-lang.
