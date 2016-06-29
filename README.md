@@ -3,14 +3,15 @@
 Dead simple but yet extensible status bar for displaying interactive progress
 for the shell-based tools, written in Go-lang.
 
-![barely-example](https://cloud.githubusercontent.com/assets/674812/16452342/c0ef1d74-3e29-11e6-83c2-a8960c3218ea.gif)
+![barely-example](https://cloud.githubusercontent.com/assets/674812/16452828/4c788a68-3e2c-11e6-8247-19e3db8f71fe.gif)
 
 # Example
 
-```go
+```
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 	"sync"
@@ -55,12 +56,17 @@ func main() {
 		wg.Add(1)
 
 		go func(i int) {
-			time.Sleep(
-				time.Duration(rand.Intn(i)) * time.Millisecond * 300,
-			)
+			sleep := time.Duration(rand.Intn(i)) * time.Millisecond * 300
+			time.Sleep(sleep)
 
 			atomic.AddInt64(&status.Done, 1)
 			atomic.AddInt64(&status.Updated, 1)
+
+			if i%10 == 0 {
+				bar.Clear(os.Stderr)
+				fmt.Printf("go-routine %d done (%s sleep)\n", i, sleep)
+			}
+
 			bar.Render(os.Stderr)
 
 			wg.Done()
