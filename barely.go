@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"regexp"
-	"strings"
 	"sync"
 	"text/template"
 )
@@ -105,15 +104,14 @@ func (bar *StatusBar) Render(writer io.Writer) error {
 }
 
 // Clear writes clear sequence in the specified writer, which is represented by
-// whitespace sequence followed by "\r".
+// terminal erase line sequence.
 func (bar *StatusBar) Clear(writer io.Writer) {
 	bar.Lock()
 	defer bar.Unlock()
 
-	fmt.Fprint(
-		writer,
-		strings.Repeat(" ", len(strings.TrimRight(bar.last, " \r\t")))+"\r",
-	)
+	if bar.last != "" {
+		fmt.Fprint(writer, "\x1b[2K")
+	}
 
 	bar.last = ""
 }
