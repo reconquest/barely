@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"sync"
 	"text/template"
+	"unicode"
 )
 
 var (
@@ -21,6 +22,8 @@ type StatusBar struct {
 	last   string
 
 	status interface{}
+
+	width int
 }
 
 // NewStatusBar returns new StatusBar object, initialized with given template.
@@ -30,6 +33,12 @@ func NewStatusBar(format *template.Template) *StatusBar {
 	return &StatusBar{
 		format: format,
 	}
+}
+
+func (bar *StatusBar) SetWidth(w int) {
+	bar.Lock()
+	defer bar.Unlock()
+	bar.width = w
 }
 
 // Lock locks StatusBar object if locker object was set with SetLock method
@@ -85,6 +94,11 @@ func (bar *StatusBar) Render(writer io.Writer) error {
 		)
 	}
 
+	if str := buffer.String(); bar.width > 0 && graphicLength(str) > bar.width {
+		buffer.Reset()
+		buffer.WriteString(trimTo(str, bar.width))
+	}
+
 	fmt.Fprintf(buffer, "\r")
 
 	bar.last = escapeSequenceRegexp.ReplaceAllLiteralString(
@@ -101,6 +115,26 @@ func (bar *StatusBar) Render(writer io.Writer) error {
 	}
 
 	return nil
+}
+
+func graphicLength(str string) int {
+	c := 0
+	for _, r := range str {
+		if unicode.IsGraphic(r) {
+			c++
+		}
+	}
+
+	return c
+}
+
+func trimTo(str string, l int) string {
+	orig := []rune(str)
+	if len(orig) < 4 {
+		return str
+	}
+
+	return string(orig[:l-3]) + "…"
 }
 
 // Clear writes clear sequence in the specified writer, which is represented by
