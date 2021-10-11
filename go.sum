@@ -4,6 +4,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/reconquest/loreley v0.0.0-20200601121626-621c1cd37fd1 h1:J1vuEtEaaHo01+gxE6jIMtTwLrYzsraHmnqbNvha2Jw=
 github.com/reconquest/loreley v0.0.0-20200601121626-621c1cd37fd1/go.mod h1:1NF/j951kWm+ZnRXpOkBqweImgwhlzFVwTA4A0V7TEU=
+github.com/reconquest/loreley v0.0.0-20211011075601-29b1d7b0ad91 h1:HuOjsuPj5mcsq/EagIovIS240SNUA+u4vLak5GcS12s=
+github.com/reconquest/loreley v0.0.0-20211011075601-29b1d7b0ad91/go.mod h1:nz+IRceapGhOTxO5cOJiu0Xc2qfEkEnR+qS6damNixI=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=

@@ -3,7 +3,7 @@ module github.com/reconquest/barely
 go 1.17
 
 require (
-	github.com/reconquest/loreley v0.0.0-20200601121626-621c1cd37fd1
+	github.com/reconquest/loreley v0.0.0-20211011075601-29b1d7b0ad91
 	github.com/stretchr/testify v1.7.0
 )
 
